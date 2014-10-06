@@ -302,6 +302,9 @@ function get_arg() { # Parse arguments
         esac
     done
     shift $((OPTIND-1))
+    if [[ "$userLink" == '' && "$1" ]]; then
+      userLink="$1"
+    fi
     [[ "$userLink" == '' ]] && log 1 "You need to specify the URL" && show_help && exit 1
 }
 
@@ -309,9 +312,11 @@ function config() { # Check for the path where download music
     if [ -f "/$HOME/.scdl.cfg" ]; then
         source "/$HOME/.scdl.cfg"
     else
-        log 1 "The config file does not exist..."
-        log 1 "Please run the Installer first or add the sample config file"
-        exit
+#        log 1 "The config file does not exist..."
+#        log 1 "Please run the Installer first or add the sample config file"
+#        exit
+      pathtomusic="$HOME/Desktop/"
+      clientID='b45b1aa10f1ac2941910a7f0d10f8e28'
     fi
 }
 
