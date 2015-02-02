@@ -79,9 +79,9 @@ function fromjsontomp3 { # use the json to download info and mp3
     realsongurl=$(echo -e "$songurl?client_id=$clientID")
     artist=$(echo -e "$songinfo" | grep "username" | cut -d '"' -f 4)
     if [[ $title =~ "$artist" ]] ; then 
-        filename=$(printf "%s.mp3" "$title")
+        filename=$(printf "%s.mp3" "$title" | tr '/' '_')
     else
-        filename=$(printf "%s - %s.mp3" "$artist" "$title")
+        filename=$(printf "%s - %s.mp3" "$artist" "$title" | tr '/' '_')
     fi
     imageurl=$(echo -e "$songinfo" | grep "artwork_url" | cut -d '"' -f 4 | sed 's/large/t500x500/g')
     genre=$(echo -e "$songinfo" | grep "genre" | cut -d '"' -f 4)
